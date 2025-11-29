@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="ocean">
+<head>
+    <meta charset="UTF-8" />
+    <title>Amirhossein Naderi – Portfolio</title>
+    <meta name="description"
+          content="Portfolio of Amirhossein Naderi – System administrator, Python developer, web scraper, and network engineer." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <link rel="stylesheet" href="{% static 'portfolio/css/styles.css' %}">
+    <script defer src="{% static 'portfolio/js/main.js' %}"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">Amirhossein Naderi</div>
+        <nav class="nav">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#gemini">Gemini Chatbot</a>
+            <a href="#imdb">IMDB Top Movies</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="controls">
+            <select id="theme-select">
+                <option value="ocean">Ocean</option>
+                <option value="sunny">Sunny</option>
+                <option value="night">Night Sky</option>
+            </select>
+            <label class="dark-toggle">
+                <input type="checkbox" id="dark-mode-toggle" />
+                <span>Dark mode</span>
+            </label>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="year"></span> Amirhossein Naderi · Portfolio</p>
+    </footer>
+</body>
+</html>

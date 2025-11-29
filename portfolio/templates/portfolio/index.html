@@ -1,0 +1,94 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block content %}
+<section id="about" class="section about">
+    <h1>Hello, This is a Portfolio Website</h1>
+    <p>{{ about_me }}</p>
+</section>
+
+<section id="education" class="section education">
+    <h2>تحصیلات (Education)</h2>
+    <p><strong>{{ education.degree }}</strong> — {{ education.university }} ({{ education.year }})</p>
+</section>
+
+<section id="skills" class="section skills">
+    <h2>مهارت‌ها (Skills)</h2>
+    <ul>
+        {% for s in skills %}
+        <li>{{ s }}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section id="projects" class="section projects">
+    <h2>پروژه‌ها (Projects)</h2>
+    <div class="project-grid">
+        {% for p in projects %}
+        <article class="project-card">
+            <h3>{{ p.title }}</h3>
+            <a href="{{ p.url }}" target="_blank" rel="noopener noreferrer">مشاهده پروژه</a>
+            <p>{{ p.description }}</p>
+            {% if p.tags %}
+            <div class="tags">
+                {% for t in p.tags %}
+                <span class="tag">{{ t }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="gemini" class="section gemini">
+    <h2>Gemini chatbot</h2>
+    <p>
+        این چت‌بات با Flask و Gemini 2.5 Flash API پیاده‌سازی شده است و مستقیماً روی این صفحه نمایش داده می‌شود.
+        از طریق فرم زیر می‌توانید پیام خود را ارسال کنید.
+    </p>
+    <div class="chatbot-box">
+        <div id="chat-log"></div>
+        <form id="chat-form">
+            <input type="text" id="chat-input" placeholder="پیام خود را بنویسید..." required />
+            <button type="submit">ارسال</button>
+        </form>
+    </div>
+</section>
+
+<section id="imdb" class="section imdb">
+    <h2>IMDB Top Movies</h2>
+    <p>List of Top Movies of IMDB:</p>
+    {% if imdb_movies %}
+    <table class="imdb-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in imdb_movies %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{{ m.url }}" target="_blank" rel="noopener noreferrer">{{ m.title }}</a></td>
+                <td>{{ m.year }}</td>
+                <td>{{ m.rating }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>در حال حاضر امکان بازیابی داده‌های IMDB وجود ندارد.</p>
+    {% endif %}
+    <p>ساعت ایران: <span id="iran-time"></span></p>
+</section>
+
+<section id="contact" class="section contact">
+    <h2>ارتباط با من (Contact)</h2>
+    <p>Email: <a href="mailto:amirnaderi1997420@gmail.com">amirnaderi1997420@gmail.com</a></p>
+    <p>Phone (WhatsApp/Telegram): <a href="tel:+989134266895">+98 913 426 6895</a></p>
+</section>
+{% endblock %}
